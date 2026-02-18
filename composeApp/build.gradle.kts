@@ -11,7 +11,7 @@ plugins {
 
 kotlin {
     androidLibrary {
-        namespace = "org.example.project.composeApp"
+        namespace = "compose.project.demo.composedemo.app"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
 
@@ -48,17 +48,26 @@ kotlin {
         implementation(libs.compose.uiToolingPreview)
         implementation(libs.androidx.lifecycle.viewmodelCompose)
         implementation(libs.androidx.lifecycle.runtimeCompose)
-
+        implementation(projects.shared)
         implementation(libs.kotlinx.datetime)
 
         testImplementation(libs.kotlin.test)
     }
 
     sourceSets {
+        commonMain.dependencies {
+
+            implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.koin.compose.viewmodel.navigation)
+        }
         all {
             languageSettings {
                 optIn("kotlin.time.ExperimentalTime")
             }
+
+
         }
     }
 }
