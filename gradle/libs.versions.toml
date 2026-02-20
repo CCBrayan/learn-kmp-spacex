@@ -19,13 +19,15 @@ koin-bom = "4.1.1"
 kotlinStdlib = "2.3.10"
 runner = "1.5.2"
 core = "1.5.0"
-
+sqldelight = "2.2.1"
 ktor = "3.4.0"
 kotlinx-coroutines = "1.10.2"
 dateTime = "0.7.1"
+material = "1.10.0"
 
 [libraries]
-
+sqldelight-driver-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
+sqldelight-driver-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
 koin-core = { module = "io.insert-koin:koin-core" }
 koin-android = { module = "io.insert-koin:koin-android" }
@@ -70,9 +72,11 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlinStdlib" }
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
 androidx-core = { group = "androidx.test", name = "core", version.ref = "core" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 
 [plugins]
+sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }

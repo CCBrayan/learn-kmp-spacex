@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.androidLint)
+    alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
@@ -89,6 +90,7 @@ kotlin {
         androidMain {
             dependencies {
                 implementation(libs.ktor.client.okhttp)
+                implementation(libs.sqldelight.driver.android)
                 // Add Android-specific dependencies here. Note that this source set depends on
                 // commonMain by default and will correctly pull the Android artifacts of any KMP
                 // dependencies declared in commonMain.
@@ -106,6 +108,7 @@ kotlin {
         iosMain {
             dependencies {
                 implementation(libs.ktor.client.darwin)
+                implementation(libs.sqldelight.driver.native)
                 // Add iOS-specific dependencies here. This a source set created by Kotlin Gradle
                 // Plugin (KGP) that each specific iOS target (e.g., iosX64) depends on as
                 // part of KMP’s default source set hierarchy. Note that this source set depends
@@ -118,4 +121,13 @@ kotlin {
         implementation(kotlin("test"))
     }
 
+}
+
+sqldelight {
+    databases {
+        create("AppDatabase") {
+            packageName.set("compose.project.demo.composedemo.data.local")
+        }
+    }
+    linkSqlite = true
 }
