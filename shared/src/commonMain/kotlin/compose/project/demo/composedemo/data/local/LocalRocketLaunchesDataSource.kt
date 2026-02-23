@@ -3,15 +3,11 @@ package compose.project.demo.composedemo.data.local
 import compose.project.demo.composedemo.domain.entity.Links
 import compose.project.demo.composedemo.domain.entity.Patch
 import compose.project.demo.composedemo.domain.entity.RocketLaunch
-// Este import es fundamental, es la clase que genera SQLDelight
-import compose.project.demo.composedemo.data.local.AppDatabaseQueries
 
-class LocalRocketLaunchesDataSource(
-    private val dbQuery: AppDatabaseQueries // Inyectamos las queries directamente
-) : ILocalRocketLaunchesDataSource {
+class LocalRocketLaunchesDataSource(database: AppDatabase) : ILocalRocketLaunchesDataSource {
+    private val dbQuery = database.appDatabaseQueries
 
     override fun getAllLaunches(): List<RocketLaunch> {
-        // Ahora usamos dbQuery directamente
         return dbQuery.selectAllLaunchesInfo(::mapLaunchSelecting).executeAsList()
     }
 
@@ -31,10 +27,11 @@ class LocalRocketLaunchesDataSource(
             details = details,
             launchDateUTC = launchDateUTC,
             launchSuccess = launchSuccess,
-            links = Links(
-                patch = Patch(small = patchUrlSmall, large = patchUrlLarge),
-                article = articleUrl,
-            ),
+            links =
+                Links(
+                    patch = Patch(small = patchUrlSmall, large = patchUrlLarge),
+                    article = articleUrl,
+                ),
         )
     }
 
