@@ -20,14 +20,6 @@ val dataModule = module {
             Dispatchers.IO
         )
     }
-<<<<<<< HEAD
-    single<IRocketLaunchesRepository>
-    { RocketLaunchesRepository(get(),
-        get(),
-        Dispatchers.Default)
-    }
-}
-=======
 
     single { get<DriverFactory>().createDriver() }
     single { AppDatabase(get()) }
@@ -37,4 +29,4 @@ val dataModule = module {
     
     single<ILocalRocketLaunchesDataSource> { LocalRocketLaunchesDataSource(get()) }
 }
->>>>>>> a3fabf325d0aecdc649d2bae20573ea98bc722e8
+
