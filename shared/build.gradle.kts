@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.androidLint)
     alias(libs.plugins.sqlDelight)
+    alias(libs.plugins.mokkery)
 }
 
 kotlin {
